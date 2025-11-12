@@ -29,7 +29,8 @@ PersistentVolumeClaim (PVC)	Requête de stockage utilisée par PostgreSQL
 📁 3. Structure du projet
 lab7/
 │
-├── k8s/                      # Fichiers de configuration Kubernetes
+├── k8s/
+|   |__ namespace.yaml
 │   ├── configmap.yaml
 │   ├── secret.yaml
 │   ├── pv.yaml

@@ -15,6 +15,7 @@ Backend : Base de données PostgreSQL (ClusterIP)
 Persistance : PV & PVC utilisés par PostgreSQL
 
  2. Architecture
+
 🔹 Description
 
 L’architecture se compose des éléments suivants :

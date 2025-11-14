@@ -26,6 +26,7 @@ db-deployment	Déploiement de la base PostgreSQL
 db-service	Service ClusterIP pour communication interne
 PersistentVolume (PV)	Espace de stockage physique sur le nœud
 PersistentVolumeClaim (PVC)	Requête de stockage utilisée par PostgreSQL
+
 📁 3. Structure du projet
 lab7/
 ├── app/

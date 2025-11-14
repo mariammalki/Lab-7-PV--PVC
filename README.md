@@ -1,6 +1,6 @@
 Lab 7 — Persistance des données avec PV & PVC (Flask + PostgreSQL sur K3s)
 
-🧭 1. Objectif du projet
+ 1. Objectif du projet
 
 Ce laboratoire étend le Lab 6 en ajoutant des Persistent Volumes (PV) et Persistent Volume Claims (PVC) afin d’assurer la persistance des données de la base de données PostgreSQL.
 
@@ -14,7 +14,7 @@ Backend : Base de données PostgreSQL (ClusterIP)
 
 Persistance : PV & PVC utilisés par PostgreSQL
 
-🏗️ 2. Architecture
+ 2. Architecture
 🔹 Description
 
 L’architecture se compose des éléments suivants :
@@ -28,7 +28,10 @@ PersistentVolume (PV)	Espace de stockage physique sur le nœud
 PersistentVolumeClaim (PVC)	Requête de stockage utilisée par PostgreSQL
 📁 3. Structure du projet
 lab7/
-│
+├── app/
+│   ├── app.py
+│   ├── templates/
+│   └── requirements.txt
 ├── k8s/
 |   |__ namespace.yaml
 │   ├── configmap.yaml
@@ -39,17 +42,17 @@ lab7/
 │   ├── db-service.yaml
 │   ├── web-deployment.yaml
 │   └── web-service.yaml
-│
+│__docs
 └── README.md
 
 ⚙️ 4. Étapes de déploiement
-🧩 Étape 1 — Créer le ConfigMap et le Secret
-kubectl apply -f k8s/configmap.yaml
-kubectl apply -f k8s/secret.yaml
+ Étape 1 — Créer le ConfigMap et le Secret
+kubectl apply -f configmap.yaml
+kubectl apply -f secret.yaml
 
-💾 Étape 2 — Créer le PV et le PVC
-kubectl apply -f k8s/pv.yaml
-kubectl apply -f k8s/pvc.yaml
+Étape 2 — Créer le PV et le PVC
+kubectl apply -f pv.yaml
+kubectl apply -f pvc.yaml
 
 
 Vérifier la création :
@@ -57,13 +60,13 @@ Vérifier la création :
 kubectl get pv
 kubectl get pvc
 
-🗄️ Étape 3 — Déployer la base de données PostgreSQL
-kubectl apply -f k8s/db-deployment.yaml
-kubectl apply -f k8s/db-service.yaml
+ Étape 3 — Déployer la base de données PostgreSQL
+kubectl apply -f db-deployment.yaml
+kubectl apply -f db-service.yaml
 
-🌐 Étape 4 — Déployer l’application Flask
-kubectl apply -f k8s/web-deployment.yaml
-kubectl apply -f k8s/web-service.yaml
+ Étape 4 — Déployer l’application Flask
+kubectl apply -f web-deployment.yaml
+kubectl apply -f web-service.yaml
 
 🔍 5. Vérifications
 Voir les pods et services :
@@ -88,13 +91,14 @@ http://<NODE_IP>:30081
 
 Le port 30081 correspond au port NodePort du service Flask.
 
-🧪 7. Test de persistance des données
+7. Test de persistance des données
 
 Ouvre la page web du formulaire.
 
 Saisis un nom et un email, puis clique sur Ajouter.
 
 Vérifie que les données s’affichent dans la liste.
+![Formulaire](docs/screenshots/test-lab7.1.png)
 
 Supprime le pod de la base de données :
 
@@ -103,6 +107,7 @@ kubectl delete pod -l app=db
 
 Une fois le pod redémarré, actualise la page web —
 ✅ Les données sont toujours présentes → la persistance fonctionne.
+![Formulaire](docs/screenshots/test-persistance.png)
 
 🔐 8. Configuration et sécurité
 

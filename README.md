@@ -71,6 +71,7 @@ kubectl apply -f web-deployment.yaml
 kubectl apply -f web-service.yaml
 
 🔍 5. Vérifications
+
 Voir les pods et services :
 kubectl get pods
 kubectl get svc
